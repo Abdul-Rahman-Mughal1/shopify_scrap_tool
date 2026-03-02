@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopify Scraper Tool</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background: #f9f9f9; }
+        .container { max-width: 600px; margin: auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; }
+        input { width: 80%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        a { display: block; margin-top: 20px; color: green; font-weight: bold; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Shopify Scraper Tool</h1>
+        <form method="POST">
+            <input type="text" name="link" placeholder="Enter Collection Link" />
+            <br>
+            <button type="submit">Scrape Now</button>
+        </form>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        {% if excel_file %}
+            <h3>✅ Scraping Done! Download Files:</h3>
+            <a href="/download/{{ excel_file }}">📥 Download Excel</a>
+            <a href="/download/{{ zip_file }}">📥 Download Images (ZIP)</a>
+        {% endif %}
+    </div>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function() {
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("logs").style.display = "block";
+    });
+</script>
+</body>
+</html>
